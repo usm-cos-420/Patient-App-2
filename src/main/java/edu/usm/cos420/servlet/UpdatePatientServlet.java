@@ -21,16 +21,10 @@ public class UpdatePatientServlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Get DB information
-		Properties properties = new Properties();
-		properties.load(getClass().getClassLoader().getResourceAsStream("database.properties"));
-
-		String dbUrl = String.format(this.getServletContext().getInitParameter("sql.urlRemote"),
-				properties.getProperty("sql.dbName"), properties.getProperty("sql.instanceName"),
-				properties.getProperty("sql.userName"), properties.getProperty("sql.password"));
 		PatientDao dao = null;
 		
 		try {
-			dao = new PatientCloudSqlDao(dbUrl);
+			dao = new PatientCloudSqlDao();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -50,16 +44,10 @@ public class UpdatePatientServlet extends HttpServlet{
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Get DB information
-		Properties properties = new Properties();
-		properties.load(getClass().getClassLoader().getResourceAsStream("database.properties"));
 
-		String dbUrl = String.format(this.getServletContext().getInitParameter("sql.urlRemote"),
-				properties.getProperty("sql.dbName"), properties.getProperty("sql.instanceName"),
-				properties.getProperty("sql.userName"), properties.getProperty("sql.password"));
 		PatientDao dao = null;
-		
-		try {
-			dao = new PatientCloudSqlDao(dbUrl);
+   	    try {
+			dao = new PatientCloudSqlDao();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
